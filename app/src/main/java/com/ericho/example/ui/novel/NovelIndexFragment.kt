@@ -14,7 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class NovelIndexFragment : Fragment() {
 
     private val viewModel: NovelViewModel by sharedViewModel()
-
+    private var binding: FragmentNovelIndexBinding? = null
     private var url: String? = null
 
     companion object {
@@ -42,14 +42,22 @@ class NovelIndexFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentNovelIndexBinding>(
+        binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_novel_index,
             container,
             false
         )
-        binding.vm = viewModel
-        binding.lifecycleOwner = this
-        return binding.root
+        binding?.vm = viewModel
+        binding?.lifecycleOwner = this
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //
+
+        val w = binding?.webView
+        w?.loadUrl(viewModel.indexLink)
     }
 }

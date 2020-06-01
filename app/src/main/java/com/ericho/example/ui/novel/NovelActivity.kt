@@ -75,8 +75,8 @@ class NovelActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentByTag(tag_detail) ?: NovelPageFragment.newInstance()
 
         supportFragmentManager.beginTransaction().apply {
-            add(header!!, tag_header)
-            add(detail!!, tag_detail)
+            add(R.id.frameLayout, header!!, tag_header)
+            add(R.id.frameLayout, detail!!, tag_detail)
             hide(detail!!)
         }.commit()
 
@@ -94,7 +94,7 @@ class NovelActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
-                viewModel
+                viewModel.switch()
                 true
             }
             else -> super.onOptionsItemSelected(item)
