@@ -6,7 +6,7 @@ import com.ericho.example.ext.post
 
 class MainViewModel : ViewModel() {
 
-    val title = MutableLiveData<String>()
+    val title = MutableLiveData<String>("aaaa")
 
 
     fun start() {
