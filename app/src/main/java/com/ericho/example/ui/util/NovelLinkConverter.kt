@@ -8,7 +8,7 @@ import org.jsoup.Jsoup
  */
 object NovelLinkConverter {
 
-    fun getListOfChapter_pc(indexLink: String): List<Chapter> {
+    suspend fun getListOfChapter_pc(indexLink: String): List<Chapter> {
         val res = mutableListOf<Chapter>()
 
         val url = indexLink
@@ -27,7 +27,7 @@ object NovelLinkConverter {
         return res
     }
 
-    fun getListOfChapter_mobile(indexLink: String): List<Chapter> {
+    suspend fun getListOfChapter_mobile(indexLink: String): List<Chapter> {
         val res = mutableListOf<Chapter>()
 
         val url = indexLink
