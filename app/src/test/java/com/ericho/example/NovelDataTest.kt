@@ -1,5 +1,6 @@
 package com.ericho.example
 
+import com.ericho.example.data.Chapter
 import org.jsoup.Jsoup
 import org.junit.Test
 
