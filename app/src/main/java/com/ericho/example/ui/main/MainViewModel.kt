@@ -6,10 +6,10 @@ import com.ericho.example.ext.post
 
 class MainViewModel : ViewModel() {
 
-    val li_a = MutableLiveData<String>("Pending")
+    val title = MutableLiveData<String>()
 
 
     fun start() {
-        li_a post "abc"
+        title post "Eric G"
     }
 }
