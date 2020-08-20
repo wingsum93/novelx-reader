@@ -13,7 +13,7 @@ android {
         targetSdkVersion versions.compileSdk
         versionCode versions.publishVersionCode
         versionName versions.publishVersion
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.ericho.example.EricRunner"
     }
     buildTypes {
         release {
@@ -59,7 +59,11 @@ dependencies {
     implementation "org.koin:koin-androidx-fragment:$versions.koin"
     // Koin AndroidX Experimental features
     implementation "org.koin:koin-androidx-ext:$versions.koin"
-
+    // Material Dialog
+    implementation "com.afollestad.material-dialogs:core:$versions.materialDialog"
+    implementation "com.afollestad.material-dialogs:input:$versions.materialDialog"
+    implementation "com.afollestad.material-dialogs:datetime:$versions.materialDialog"
+    implementation "com.afollestad.material-dialogs:bottomsheets:$versions.materialDialog"
     // Jsoup
     implementation "org.jsoup:jsoup:1.13.1"
     // Okhttp
@@ -68,9 +72,17 @@ dependencies {
 
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
     implementation "com.jakewharton.timber:timber:4.7.1"
-
+    // Unit test
     testImplementation 'junit:junit:4.13'
+    // UI test
+    androidTestImplementation 'androidx.test:core:1.2.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-web:$versions.espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-idling-resource:$versions.espresso"
+    // Koin Test
+    androidTestImplementation "org.koin:koin-test:2.1.6"
 }
 apply from: '../spotless.gradle'

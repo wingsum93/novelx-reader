@@ -40,7 +40,7 @@ ext.versions = [
     // Gson
     gson                : '2.8.5',
     // afollestad
-    materialDialogs     : '3.0.0-alpha4',
+    materialDialog     : '3.3.0',
     rxkPrefs            : '1.2.5',
     assent              : '2.3.0',
     recyclical          : '1.0.0-RC2',
@@ -67,5 +67,6 @@ ext.versions = [
     mockitoKotlin       : '2.1.0',
     truth               : '0.44',
     androidxTest        : '1.1.0',
-    archTesting         : '2.0.1'
+    archTesting         : '2.0.1',
+    espresso            : '3.2.0'
 ]
