@@ -1,6 +1,6 @@
 package com.ericho.example.ui.util
 
-import com.ericho.example.data.Chapter
+import com.ericho.example.ui.novel.ChapterDisplayModel
 import org.jsoup.Jsoup
 
 /**
@@ -8,8 +8,8 @@ import org.jsoup.Jsoup
  */
 object NovelLinkConverter {
 
-    suspend fun getListOfChapter_pc(indexLink: String): List<Chapter> {
-        val res = mutableListOf<Chapter>()
+    suspend fun getListOfChapter_pc(indexLink: String): List<ChapterDisplayModel> {
+        val res = mutableListOf<ChapterDisplayModel>()
 
         val url = indexLink
         val doc = Jsoup.connect(url).get()
@@ -21,14 +21,14 @@ object NovelLinkConverter {
             val chapterName = aElement.html()
             val link = aElement.absUrl("href")
 
-            val chapter = Chapter(title = chapterName, link = link)
+            val chapter = ChapterDisplayModel(title = chapterName, link = link)
             res += chapter
         }
         return res
     }
 
-    suspend fun getListOfChapter_mobile(indexLink: String): List<Chapter> {
-        val res = mutableListOf<Chapter>()
+    suspend fun getListOfChapter_mobile(indexLink: String): List<ChapterDisplayModel> {
+        val res = mutableListOf<ChapterDisplayModel>()
 
         val url = indexLink
         val doc = Jsoup.connect(url).get()
@@ -40,7 +40,7 @@ object NovelLinkConverter {
             val chapterName = aElement.html()
             val link = aElement.absUrl("href")
 
-            val chapter = Chapter(title = chapterName, link = link)
+            val chapter = ChapterDisplayModel(title = chapterName, link = link)
             res += chapter
         }
         return res

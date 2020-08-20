@@ -45,16 +45,15 @@ class NovelPageFragment : Fragment() {
             container,
             false
         )
-        binding?.vm = viewModel
-        binding?.lifecycleOwner = this
         return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.indexLink
+        binding?.vm = viewModel
+        binding?.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.currentChapter.observe(this, Observer {
+        viewModel.chapterDisplayModel.observe(this, Observer {
             binding!!.webView.loadUrl(it.link)
         })
     }

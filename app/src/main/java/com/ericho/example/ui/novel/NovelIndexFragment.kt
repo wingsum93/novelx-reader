@@ -48,14 +48,13 @@ class NovelIndexFragment : Fragment() {
             container,
             false
         )
-        binding?.vm = viewModel
-        binding?.lifecycleOwner = this
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //
+        binding?.vm = viewModel
+        binding?.lifecycleOwner = viewLifecycleOwner
 
         val w = binding?.webView
         w?.loadUrl(viewModel.indexLink)

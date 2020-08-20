@@ -7,7 +7,7 @@ ext.versions = [
     publishVersionCode  : 29,
 
     // Plugins
-    gradlePlugin        : '3.4.2',
+    gradlePlugin        : '4.0.1',
     spotlessPlugin      : '3.22.0',
     versionPlugin       : '0.21.0',
     googleServices      : '4.2.0',
@@ -34,7 +34,7 @@ ext.versions = [
     lifecycle           : '2.0.0',
     // Network
     okhttp              : '4.0.0-RC1',
-    retrofit            : '2.5.0',
+    retrofit            : '2.9.0',
     // Glide
     glide               : '4.9.0',
     // Gson
