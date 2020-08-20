@@ -8,7 +8,6 @@ class MainViewModel : ViewModel() {
 
     val title = MutableLiveData<String>("aaaa")
 
-
     fun start() {
         title post "Eric G"
     }

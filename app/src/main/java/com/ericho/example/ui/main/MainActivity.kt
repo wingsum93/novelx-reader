@@ -1,17 +1,16 @@
 package com.ericho.example.ui.main
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.ericho.example.R
 import com.ericho.example.databinding.ActivityMainBinding
 import com.ericho.example.ext.post
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.ericho.example.ui.novel.NovelActivity
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -30,10 +29,13 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         viewModel.title.observe(this, Observer {
             binding.toolbar.title = it
-            binding.a.text.text = it
+            binding.tvEmpty.text = it
         })
         viewModel.start()
-
+        binding.tvEmpty.setOnClickListener {
+            val i = Intent(this, NovelActivity::class.java)
+            startActivity(i)
+        }
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
