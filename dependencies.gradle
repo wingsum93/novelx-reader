@@ -63,8 +63,7 @@ ext.versions = [
 
     // Test
     junit               : '4.12',
-    mockito             : '2.27.0',
-    mockitoKotlin       : '2.1.0',
+    mockk               : '1.10.0',
     truth               : '0.44',
     androidxTest        : '1.1.0',
     archTesting         : '2.0.1',

@@ -13,7 +13,7 @@ android {
         targetSdkVersion versions.compileSdk
         versionCode versions.publishVersionCode
         versionName versions.publishVersion
-        testInstrumentationRunner "com.ericho.example.EricRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -84,5 +84,9 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-idling-resource:$versions.espresso"
     // Koin Test
     androidTestImplementation "org.koin:koin-test:2.1.6"
+
+    // MockK
+    testImplementation "io.mockk:mockk:$versions.mockk"
+    androidTestImplementation "io.mockk:mockk-android:$versions.mockk"
 }
 apply from: '../spotless.gradle'
