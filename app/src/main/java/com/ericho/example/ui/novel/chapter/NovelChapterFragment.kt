@@ -1,4 +1,4 @@
-package com.ericho.example.ui.novel
+package com.ericho.example.ui.novel.chapter
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,19 +9,23 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.ericho.example.R
 import com.ericho.example.databinding.FragmentNovelPageBinding
+import com.ericho.example.ui.novel.NovelViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class NovelPageFragment : Fragment() {
+/**
+ * The reading page for novels chapters
+ */
+class NovelChapterFragment : Fragment() {
 
     private val viewModel: NovelViewModel by sharedViewModel()
     private var binding: FragmentNovelPageBinding? = null
 
     companion object {
 
-        fun newInstance(): NovelPageFragment {
+        fun newInstance(): NovelChapterFragment {
             val b = Bundle()
 //            b.putString(Cc.Key.URL, l)
-            val fragment = NovelPageFragment()
+            val fragment = NovelChapterFragment()
             fragment.arguments = b
             return fragment
         }

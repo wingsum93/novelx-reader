@@ -1,6 +1,6 @@
 package com.ericho.example
 
-import com.ericho.example.ui.novel.ChapterDisplayModel
+import com.ericho.example.ui.novel.chapter.ChapterDisplayModel
 import org.jsoup.Jsoup
 import org.junit.Test
 

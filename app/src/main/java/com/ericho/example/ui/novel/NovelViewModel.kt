@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ericho.example.data.INovelRepository
 import com.ericho.example.ext.post
+import com.ericho.example.ui.novel.chapter.ChapterDisplayModel
 import com.ericho.example.ui.util.NovelLinkConverter
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
@@ -41,7 +42,7 @@ class NovelViewModel(
     /**
      * @param chapterNo start from 1
      */
-    fun goToChapter(chapterNo: Int) {
+    fun goToChapter(chapterNo: Int = 1) {
         chapterDisplayModel post data[chapterNo - 1]
     }
 

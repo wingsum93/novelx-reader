@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.ericho.example.Cc
+import com.ericho.example.NvFragmentFactory
 import com.ericho.example.R
 import com.ericho.example.databinding.ActivityNovelBinding
+import com.ericho.example.ui.novel.chapter.NovelChapterFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -22,10 +25,11 @@ class NovelActivity : AppCompatActivity() {
     val tag_header = "tag_header"
     val tag_detail = "tag_detail"
 
-    val indexLink = "https://t.uukanshu.com/book.aspx?id=41496"
+    private val indexLink = Cc.SampleUrl.LINK_A
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportFragmentManager.fragmentFactory = NvFragmentFactory()
         super.onCreate(savedInstanceState)
         val binding: ActivityNovelBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_novel)
@@ -39,7 +43,6 @@ class NovelActivity : AppCompatActivity() {
                 goToHeaderPage()
             } else {
                 goToDetailPage()
-
             }
         })
 
@@ -72,7 +75,8 @@ class NovelActivity : AppCompatActivity() {
                 viewModel.indexLink
             )
         detail =
-            supportFragmentManager.findFragmentByTag(tag_detail) ?: NovelPageFragment.newInstance()
+            supportFragmentManager.findFragmentByTag(tag_detail)
+                ?: NovelChapterFragment.newInstance()
 
         supportFragmentManager.beginTransaction().apply {
             add(R.id.frameLayout, header!!, tag_header)

@@ -11,6 +11,9 @@ import com.ericho.example.R
 import com.ericho.example.databinding.FragmentNovelIndexBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+/**
+ * The Index page for novels
+ */
 class NovelIndexFragment : Fragment() {
 
     private val viewModel: NovelViewModel by sharedViewModel()
@@ -58,5 +61,6 @@ class NovelIndexFragment : Fragment() {
 
         val w = binding?.webView
         w?.loadUrl(viewModel.indexLink)
+        w?.webChromeClient
     }
 }
