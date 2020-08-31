@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ericho.example.Cc
 import com.ericho.example.R
 import com.ericho.example.databinding.FragmentNovelIndexBinding
@@ -18,6 +19,7 @@ class NovelIndexFragment : Fragment() {
 
     private val viewModel: NovelViewModel by sharedViewModel()
     private var binding: FragmentNovelIndexBinding? = null
+    private var adapter: NovelChapterAdapter? = null
     private var url: String? = null
 
     companion object {
@@ -61,6 +63,10 @@ class NovelIndexFragment : Fragment() {
 
         val w = binding?.webView
         w?.loadUrl(viewModel.indexLink)
-        w?.webChromeClient
+
+        binding?.recyclerView?.also {
+            it.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            it.adapter = NovelChapterAdapter().also { this.adapter = it }
+        }
     }
 }

@@ -1,10 +1,11 @@
 package com.ericho.example.ui.novel
 
-import android.view.View
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.ericho.example.databinding.RowNovelChapterBinding
 import com.ericho.example.ui.novel.chapter.ChapterDisplayModel
 
 class NovelChapterAdapter :
@@ -28,17 +29,21 @@ class NovelChapterAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        TODO()
+
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = RowNovelChapterBinding.inflate(inflater, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val item = getItem(position)
+        holder.setItem(item)
     }
 
-    class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+    class ViewHolder(val binding: RowNovelChapterBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun setItem() {
-
+        fun setItem(item: ChapterDisplayModel) {
+            binding.item = item
         }
     }
 }
