@@ -25,7 +25,7 @@ class NovelActivity : AppCompatActivity() {
     val tag_header = "tag_header"
     val tag_detail = "tag_detail"
 
-    private val indexLink = Cc.SampleUrl.LINK_A
+    private lateinit var indexLink: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +36,9 @@ class NovelActivity : AppCompatActivity() {
         binding.vm = viewModel
         binding.lifecycleOwner = this
         setSupportActionBar(binding.toolbar)
+        //get data
+        indexLink = intent.getStringExtra(Cc.Key.URL)!!
+
         // register actions
         viewModel.indexOrDetail.observe(this, Observer {
             Timber.d("indexOrDetail $it")

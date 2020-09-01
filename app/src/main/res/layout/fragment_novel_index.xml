@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="vm"
             type="com.ericho.example.ui.novel.NovelViewModel" />
@@ -15,11 +14,12 @@
 
         <WebView
             android:id="@+id/webView"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"

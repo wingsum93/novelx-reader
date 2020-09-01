@@ -7,8 +7,10 @@ import com.ericho.example.ext.post
 class MainViewModel : ViewModel() {
 
     val title = MutableLiveData<String>("aaaa")
+    val novelTitle = MutableLiveData<String>("aaaa")
 
     fun start() {
-        title post "Eric G"
+        title post "Novel Repo"
+        novelTitle post "Novel A"
     }
 }

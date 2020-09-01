@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.ericho.example.data.INovelRepository
 import com.ericho.example.ext.post
 import com.ericho.example.ui.novel.chapter.ChapterDisplayModel
-import com.ericho.example.ui.util.NovelLinkConverter
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,6 +16,7 @@ class NovelViewModel(
     var indexLink: String = ""
     val indexOrDetail = MutableLiveData(true)
     var chapterDisplayModel: MutableLiveData<ChapterDisplayModel> = MutableLiveData()
+    val chapters = MutableLiveData<List<ChapterDisplayModel>>()
     private val gson = GsonBuilder()
         .disableHtmlEscaping().create()
 
@@ -27,10 +27,11 @@ class NovelViewModel(
     fun loadAllInfo(l: String) {
         indexLink = l
         viewModelScope.launch(Dispatchers.IO) {
-            data += NovelLinkConverter.getListOfChapter_mobile(indexLink)
+            data += repository.getChapters(l)
             indexOrDetail post true
             println(gson.toJson(data))
             goToChapter(12)
+            chapters.postValue(data)
         }
 
     }

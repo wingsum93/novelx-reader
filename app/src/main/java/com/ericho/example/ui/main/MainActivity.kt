@@ -6,7 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import com.ericho.example.Cc
 import com.ericho.example.R
 import com.ericho.example.databinding.ActivityMainBinding
 import com.ericho.example.ext.post
@@ -27,13 +27,11 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         setSupportActionBar(binding.toolbar)
-        viewModel.title.observe(this, Observer {
-            binding.toolbar.title = it
-            binding.tvEmpty.text = it
-        })
+
         viewModel.start()
         binding.tvEmpty.setOnClickListener {
             val i = Intent(this, NovelActivity::class.java)
+            i.putExtra(Cc.Key.URL, Cc.SampleUrl.LINK_A)
             startActivity(i)
         }
         binding.fab.setOnClickListener { view ->
