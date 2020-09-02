@@ -2,7 +2,7 @@ ext.versions = [
     // Properties
     minSdk              : 23,
     compileSdk          : 29,
-    buildTools          : '28.0.3',
+    buildTools          : '29.0.3',
     publishVersion      : '1.0.13',
     publishVersionCode  : 29,
 
@@ -68,5 +68,5 @@ ext.versions = [
     truth               : '0.44',
     androidxTest        : '1.1.0',
     archTesting         : '2.0.1',
-    espresso            : '3.2.0'
+    espresso            : '3.3.0'
 ]

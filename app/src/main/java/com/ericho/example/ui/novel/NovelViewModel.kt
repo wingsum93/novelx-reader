@@ -17,6 +17,7 @@ class NovelViewModel(
     val indexOrDetail = MutableLiveData(true)
     var chapterDisplayModel: MutableLiveData<ChapterDisplayModel> = MutableLiveData()
     val chapters = MutableLiveData<List<ChapterDisplayModel>>()
+    var currentSelectChapter: ChapterDisplayModel? = null
     private val gson = GsonBuilder()
         .disableHtmlEscaping().create()
 
