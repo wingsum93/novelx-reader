@@ -31,7 +31,6 @@ class NovelViewModel(
             data += repository.getChapters(l)
             indexOrDetail post true
             println(gson.toJson(data))
-            goToChapter(12)
             chapters.postValue(data)
         }
 

@@ -1,7 +1,12 @@
 package com.ericho.example.http
 
-interface NovelApi {
-    suspend fun getChapterList()
+import retrofit2.http.GET
+import retrofit2.http.Url
 
-    suspend fun getPageContent()
+interface NovelApi {
+    @GET
+    suspend fun getChapterList(@Url url: String): String
+
+    @GET
+    suspend fun getPageContent(@Url url: String)
 }

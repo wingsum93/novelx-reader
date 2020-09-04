@@ -8,6 +8,8 @@ object OkManager {
     private val okhttpClient: OkHttpClient = OkHttpClient.Builder()
         .readTimeout(15, TimeUnit.SECONDS)
         .connectTimeout(25, TimeUnit.SECONDS)
+        .addNetworkInterceptor(MobileItercepter())
+        .cache(null)
         .build()
 
 
