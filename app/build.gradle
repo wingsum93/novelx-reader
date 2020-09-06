@@ -95,4 +95,15 @@ dependencies {
     // Koin Test
     androidTestImplementation "org.koin:koin-test:2.1.6"
 }
+// fix spam of androidx view log message
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == "androidx.appcompat") {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion "1.+"
+            }
+        }
+    }
+}
 apply from: '../spotless.gradle'

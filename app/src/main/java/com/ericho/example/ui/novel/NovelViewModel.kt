@@ -14,6 +14,7 @@ class NovelViewModel(
     private val repository: INovelRepository
 ) : ViewModel() {
     var indexLink: String = ""
+        private set
     val indexOrDetail = MutableLiveData(true)
     var chapterDisplayModel: MutableLiveData<ChapterDisplayModel> = MutableLiveData()
     val chapters = MutableLiveData<List<ChapterDisplayModel>>()

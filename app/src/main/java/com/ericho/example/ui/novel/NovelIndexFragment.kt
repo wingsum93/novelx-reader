@@ -62,9 +62,6 @@ class NovelIndexFragment : Fragment() {
         binding?.vm = viewModel
         binding?.lifecycleOwner = viewLifecycleOwner
 
-        val w = binding?.webView
-        w?.loadUrl(viewModel.indexLink)
-
         binding?.recyclerView?.also {
             it.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             it.adapter = NovelChapterAdapter().also { this.adapter = it }

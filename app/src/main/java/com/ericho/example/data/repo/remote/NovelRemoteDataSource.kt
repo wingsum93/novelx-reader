@@ -46,11 +46,13 @@ class NovelRemoteDataSource(
         val htmlString = kotlin.runCatching {
             api.getChapterList(url)
         }
-        return if (htmlString.isFailure) {
-            emptyList()
-        } else {
+        return if (htmlString.isSuccess) {
+            Timber.i("should have result")
             ff.invoke(helper.convertStringToDocument(html = htmlString.getOrDefault("")))
             //            return NovelLinkConverter.getListOfChapter_mobile(url)
+        } else {
+            Timber.i("request is fail")
+            emptyList()
         }
     }
 }
