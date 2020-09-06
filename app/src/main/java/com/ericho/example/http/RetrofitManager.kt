@@ -1,6 +1,8 @@
 package com.ericho.example.http
 
+import com.ericho.example.other.AppConverterFactory
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitManager {
 
@@ -14,6 +16,8 @@ class RetrofitManager {
                     if (retrofit == null) {
                         retrofit = Retrofit.Builder()
                             .baseUrl("https://api.github.com/")
+                            .addConverterFactory(AppConverterFactory())
+                            .addConverterFactory(GsonConverterFactory.create())
                             .build()
                     }
                 }

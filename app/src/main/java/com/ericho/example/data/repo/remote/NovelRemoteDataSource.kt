@@ -6,6 +6,7 @@ import com.ericho.example.ext.DocumentHelper
 import com.ericho.example.ext.NovelHtmlFactory
 import com.ericho.example.http.NovelApi
 import com.ericho.example.ui.novel.chapter.ChapterDisplayModel
+import com.google.gson.Gson
 import timber.log.Timber
 
 class NovelRemoteDataSource(
@@ -14,14 +15,16 @@ class NovelRemoteDataSource(
 ) : INovelRepository {
     //diff domain, diff factory
     private val factoryMap: MutableMap<String, NovelHtmlFactory> = mutableMapOf()
+    private lateinit var default: NovelHtmlFactory
+    private val gson = Gson()
 
     init {
-        val uukanFactory: NovelHtmlFactory = { doc ->
+        default = { doc ->
             val res = mutableListOf<ChapterDisplayModel>()
-
             val cssQuery = "ul#chapterList li a"
             // for each chapters
             val elements = doc.select(cssQuery)
+            println(gson.toJson(elements))
             elements.forEach {
                 val aElement = it.select("a").first()
                 val chapterName = aElement.html()
@@ -32,6 +35,7 @@ class NovelRemoteDataSource(
             }
             res
         }
+        val uukanFactory = default
         factoryMap["www.uukanshu.com"] = uukanFactory
         factoryMap["tw.uukanshu.com"] = uukanFactory
         factoryMap["t.uukanshu.com"] = uukanFactory
@@ -40,16 +44,15 @@ class NovelRemoteDataSource(
     override suspend fun getChapters(url: String): List<ChapterDisplayModel> {
         val uri = url.toUri()
         val key = uri.host
-        Timber.i("key: $key")
-        val ff = factoryMap[key]!!
+        Timber.i("key: $key url:$url")
+        val ff = factoryMap[key] ?: default
         //
-        val htmlString = kotlin.runCatching {
-            api.getChapterList(url)
-        }
-        return if (htmlString.isSuccess) {
+
+        val result = api.getChapterList(url)
+        return if (result.isSuccessful) {
             Timber.i("should have result")
-            ff.invoke(helper.convertStringToDocument(html = htmlString.getOrDefault("")))
-            //            return NovelLinkConverter.getListOfChapter_mobile(url)
+            val string = result.body()?.content
+            ff.invoke(helper.convertStringToDocument(html = string ?: ""))
         } else {
             Timber.i("request is fail")
             emptyList()
