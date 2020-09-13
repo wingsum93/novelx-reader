@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav_graph"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.ericho.example.ui.main.MainFragment">
+        <action
+            android:id="@+id/action_mainFragment_to_indexFragment"
+            app:destination="@id/indexFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/indexFragment"
+        android:name="com.ericho.example.ui.novel.NovelIndexFragment"
+        android:label="Blank"
+        tools:layout="@layout/fragment_novel_index">
+        <action
+            android:id="@+id/action_indexFragment_to_chapterFragment"
+            app:destination="@id/chapterFragment" />
+        <action
+            android:id="@+id/action_pop_out_main"
+            app:popUpTo="@id/app_nav_graph" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chapterFragment"
+        android:name="com.ericho.example.ui.novel.chapter.NovelChapterFragment">
+        <action
+            android:id="@+id/action_pop_out_main"
+            app:popUpTo="@id/app_nav_graph" />
+    </fragment>
+</navigation>

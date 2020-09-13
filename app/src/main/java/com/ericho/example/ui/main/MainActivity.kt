@@ -1,17 +1,12 @@
 package com.ericho.example.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.ericho.example.Cc
 import com.ericho.example.R
 import com.ericho.example.databinding.ActivityMainBinding
-import com.ericho.example.ext.post
-import com.ericho.example.ui.novel.NovelActivity
-import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -29,16 +24,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         viewModel.start()
-        binding.tvEmpty.setOnClickListener {
-            val i = Intent(this, NovelActivity::class.java)
-            i.putExtra(Cc.Key.URL, Cc.SampleUrl.LINK_A)
-            startActivity(i)
-        }
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-            viewModel.title post "111"
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
