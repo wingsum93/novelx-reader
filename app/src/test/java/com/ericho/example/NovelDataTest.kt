@@ -1,6 +1,6 @@
 package com.ericho.example
 
-import com.ericho.example.ui.novel.chapter.ChapterDisplayModel
+import com.ericho.example.ui.novel.chapter.Chapter
 import org.jsoup.Jsoup
 import org.junit.Test
 
@@ -12,7 +12,7 @@ class NovelDataTest {
     fun check_computer_chapter_list() {
         println("check_computer_chapter_list")
         val map = mutableMapOf<String, String>()
-        val map2 = mutableMapOf<String, ChapterDisplayModel>()
+        val map2 = mutableMapOf<String, Chapter>()
         val url_index = "https://tw.uukanshu.com/b/41496/"
         // format the required url
         val url = url_index

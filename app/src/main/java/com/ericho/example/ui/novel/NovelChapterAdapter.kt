@@ -6,23 +6,23 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ericho.example.databinding.RowNovelChapterBinding
-import com.ericho.example.ui.novel.chapter.ChapterDisplayModel
+import com.ericho.example.ui.novel.chapter.Chapter
 
 class NovelChapterAdapter :
-    ListAdapter<ChapterDisplayModel, NovelChapterAdapter.ViewHolder>(itemCallback) {
+    ListAdapter<Chapter, NovelChapterAdapter.ViewHolder>(itemCallback) {
 
-    object itemCallback : DiffUtil.ItemCallback<ChapterDisplayModel>() {
+    object itemCallback : DiffUtil.ItemCallback<Chapter>() {
 
         override fun areItemsTheSame(
-            oldItem: ChapterDisplayModel,
-            newItem: ChapterDisplayModel
+            oldItem: Chapter,
+            newItem: Chapter
         ): Boolean {
             return oldItem.title == newItem.title
         }
 
         override fun areContentsTheSame(
-            oldItem: ChapterDisplayModel,
-            newItem: ChapterDisplayModel
+            oldItem: Chapter,
+            newItem: Chapter
         ): Boolean {
             return oldItem == newItem
         }
@@ -42,7 +42,7 @@ class NovelChapterAdapter :
 
     class ViewHolder(val binding: RowNovelChapterBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun setItem(item: ChapterDisplayModel) {
+        fun setItem(item: Chapter) {
             binding.item = item
         }
     }

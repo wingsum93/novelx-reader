@@ -10,6 +10,7 @@ object OkManager {
         .readTimeout(15, TimeUnit.SECONDS)
         .connectTimeout(25, TimeUnit.SECONDS)
         .addNetworkInterceptor(StethoInterceptor())
+        .addNetworkInterceptor(MobileInterceptor())
         .cache(null)
         .build()
 

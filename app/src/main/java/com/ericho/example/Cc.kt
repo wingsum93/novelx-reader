@@ -9,7 +9,7 @@ object Cc {
     }
 
     object SampleUrl {
-        const val LINK_A = "https://www.uukanshu.com/b/41496/"
+        const val LINK_A = "https://tw.uukanshu.com/b/41496/"
         const val LINK_A_M = "https://t.uukanshu.com/book.aspx?id=41496"
     }
 }

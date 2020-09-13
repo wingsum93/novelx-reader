@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.ericho.example.ui.novel.chapter.ChapterDisplayModel" />
+            type="com.ericho.example.ui.novel.chapter.Chapter" />
 
         <variable
             name="handler"

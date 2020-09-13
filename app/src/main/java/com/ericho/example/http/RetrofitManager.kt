@@ -1,6 +1,7 @@
 package com.ericho.example.http
 
-import com.ericho.example.other.AppConverterFactory
+import okhttp3.OkHttpClient
+import org.koin.java.KoinJavaComponent.get
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -16,7 +17,7 @@ class RetrofitManager {
                     if (retrofit == null) {
                         retrofit = Retrofit.Builder()
                             .baseUrl("https://api.github.com/")
-                            .addConverterFactory(AppConverterFactory())
+                            .client(get(OkHttpClient::class.java))
                             .addConverterFactory(GsonConverterFactory.create())
                             .build()
                     }

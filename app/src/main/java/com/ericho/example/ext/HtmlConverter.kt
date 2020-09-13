@@ -1,7 +1,9 @@
 package com.ericho.example.ext
 
-import com.ericho.example.ui.novel.chapter.ChapterDisplayModel
+import com.ericho.example.ui.novel.NovelObject
+import com.ericho.example.ui.novel.chapter.Chapter
 import org.jsoup.nodes.Document
 
-typealias NovelHtmlFactory = (Document) -> List<ChapterDisplayModel>
+typealias NovelHtmlFactoryOld = (Document) -> List<Chapter>
+typealias NovelHtmlFactory = (Document) -> NovelObject
 

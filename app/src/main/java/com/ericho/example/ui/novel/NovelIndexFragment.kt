@@ -69,8 +69,8 @@ class NovelIndexFragment : Fragment() {
         }
 
         //
-        viewModel.chapters.observe(viewLifecycleOwner, Observer {
-            adapter?.submitList(it)
+        viewModel.novel.observe(viewLifecycleOwner, Observer {
+            adapter?.submitList(it.chapters)
         })
     }
 }

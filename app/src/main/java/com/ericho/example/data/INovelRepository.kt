@@ -1,8 +1,10 @@
 package com.ericho.example.data
 
-import com.ericho.example.ui.novel.chapter.ChapterDisplayModel
+import com.ericho.example.ui.novel.NovelObject
+import java.io.IOException
 
 interface INovelRepository {
 
-    suspend fun getChapters(urls: String): List<ChapterDisplayModel>
+    @Throws(IOException::class)
+    suspend fun getNovelData(urls: String): NovelObject
 }

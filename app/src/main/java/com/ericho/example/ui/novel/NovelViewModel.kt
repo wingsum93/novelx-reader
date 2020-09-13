@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ericho.example.data.INovelRepository
 import com.ericho.example.ext.post
-import com.ericho.example.ui.novel.chapter.ChapterDisplayModel
+import com.ericho.example.ui.novel.chapter.Chapter
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,23 +16,22 @@ class NovelViewModel(
     var indexLink: String = ""
         private set
     val indexOrDetail = MutableLiveData(true)
-    var chapterDisplayModel: MutableLiveData<ChapterDisplayModel> = MutableLiveData()
-    val chapters = MutableLiveData<List<ChapterDisplayModel>>()
-    var currentSelectChapter: ChapterDisplayModel? = null
+    var chapterDisplayModel: MutableLiveData<Chapter> = MutableLiveData()
+    val chapters = MutableLiveData<List<Chapter>>()
+    val novel: MutableLiveData<NovelObject> = MutableLiveData()
+    var currentSelectChapter: Chapter? = null
     private val gson = GsonBuilder()
         .disableHtmlEscaping().create()
 
     //data
-    private val data: MutableList<ChapterDisplayModel> = mutableListOf()
+    private val data: MutableList<Chapter> = mutableListOf()
 
 
     fun loadAllInfo(l: String) {
         indexLink = l
         viewModelScope.launch(Dispatchers.IO) {
-            data += repository.getChapters(l)
+            novel.postValue(repository.getNovelData(l))
             indexOrDetail post true
-            println(gson.toJson(data))
-            chapters.postValue(data)
         }
 
     }
@@ -49,11 +48,11 @@ class NovelViewModel(
     }
 
     fun getToPrevChapter() {
-        chapterDisplayModel post ChapterDisplayModel("", "")
+        chapterDisplayModel post Chapter("", "")
     }
 
     fun getToNextChapter() {
-        chapterDisplayModel post ChapterDisplayModel("", "")
+        chapterDisplayModel post Chapter("", "")
     }
 
 
