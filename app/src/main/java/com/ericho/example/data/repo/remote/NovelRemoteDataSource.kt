@@ -24,7 +24,6 @@ class NovelRemoteDataSource(
             val cssQuery = "ul#chapterList li a"
             // for each chapters
             val elements = doc.select(cssQuery)
-            println(gson.toJson(elements))
             elements.forEach {
                 val aElement = it.select("a").first()
                 val chapterName = aElement.html()
@@ -47,11 +46,10 @@ class NovelRemoteDataSource(
         Timber.i("key: $key url:$url")
         val ff = factoryMap[key] ?: default
         //
-
-        val result = api.getChapterList(url)
+        val result = api.getPageContent(url)
         return if (result.isSuccessful) {
             Timber.i("should have result")
-            val string = result.body()?.content
+            val string = result.body()?.string()
             ff.invoke(helper.convertStringToDocument(html = string ?: ""))
         } else {
             Timber.i("request is fail")
