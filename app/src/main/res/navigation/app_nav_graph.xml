@@ -6,10 +6,16 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.ericho.example.ui.main.MainFragment">
+        android:name="com.ericho.example.ui.main.MainFragment"
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_indexFragment"
-            app:destination="@id/indexFragment" />
+            app:destination="@id/indexFragment">
+            <argument
+                android:name="novelUrl"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
     </fragment>
 
     <fragment

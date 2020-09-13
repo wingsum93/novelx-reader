@@ -22,11 +22,13 @@ class NovelIndexFragment : Fragment() {
     private var binding: FragmentNovelIndexBinding? = null
     private var adapter: NovelChapterAdapter? = null
     private var url: String? = null
+    private var KEY_URL = "novelUrl"
 
     companion object {
         /**
          * @param l the link of index page
          */
+        @Deprecated("")
         fun newInstance(l: String): NovelIndexFragment {
             val b = Bundle()
             b.putString(Cc.Key.URL, l)
@@ -41,6 +43,7 @@ class NovelIndexFragment : Fragment() {
         super.onCreate(savedInstanceState)
         // get data
         val b = requireArguments()
+        url = b.getString(KEY_URL)
     }
 
     override fun onCreateView(
@@ -72,5 +75,7 @@ class NovelIndexFragment : Fragment() {
         viewModel.novel.observe(viewLifecycleOwner, Observer {
             adapter?.submitList(it.chapters)
         })
+
+        viewModel.loadAllInfo(url!!)
     }
 }
