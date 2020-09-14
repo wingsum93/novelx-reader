@@ -1,9 +1,7 @@
 package com.ericho.example.ui.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -15,6 +13,12 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class MainFragment : Fragment() {
     private var binding: FragmentMainBinding? = null
     private val viewModel: MainViewModel by sharedViewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,6 +41,20 @@ class MainFragment : Fragment() {
             val action =
                 MainFragmentDirections.actionMainFragmentToIndexFragment(Cc.SampleUrl.LINK_A)
             findNavController().navigate(action)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_main, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                findNavController().navigate(R.id.action_mainFragment_to_settingFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

@@ -7,7 +7,6 @@ import com.ericho.example.ext.NovelHtmlFactory
 import com.ericho.example.http.NovelApi
 import com.ericho.example.ui.novel.NovelObject
 import com.ericho.example.ui.novel.chapter.Chapter
-import com.google.gson.Gson
 import timber.log.Timber
 import java.io.IOException
 
@@ -17,8 +16,7 @@ class NovelRemoteDataSource(
 ) : INovelRepository {
     //diff domain, diff factory
     private val factoryMap: MutableMap<String, NovelHtmlFactory> = mutableMapOf()
-    private lateinit var uukanFactory: NovelHtmlFactory
-    private val gson = Gson()
+    private var uukanFactory: NovelHtmlFactory
 
     init {
 
@@ -70,7 +68,8 @@ class NovelRemoteDataSource(
         return if (result.isSuccessful) {
             Timber.i("should have result")
             val string = result.body()?.string()
-            uukanFactory.invoke(
+            val targetMethod = factoryMap[key]!!
+            targetMethod.invoke(
                 urls,
                 helper.convertStringToDocument(html = string ?: "")
             )

@@ -16,6 +16,9 @@
                 app:argType="string"
                 app:nullable="false" />
         </action>
+        <action
+            android:id="@+id/action_mainFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
 
     <fragment
@@ -38,4 +41,7 @@
             android:id="@+id/action_pop_out_main"
             app:popUpTo="@id/app_nav_graph" />
     </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.ericho.example.ui.setting.SettingFragment" />
 </navigation>

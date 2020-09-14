@@ -1,5 +1,6 @@
 package com.ericho.example.ui.novel
 
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,19 +19,27 @@ class NovelViewModel(
     val indexOrDetail = MutableLiveData(true)
     var chapterDisplayModel: MutableLiveData<Chapter> = MutableLiveData()
     val novel: MutableLiveData<NovelObject> = MutableLiveData()
-    var currentSelectChapter: Chapter? = null
+    var currentSelectChapterIndex: MutableLiveData<Int> = MutableLiveData<Int>(0)
     private val gson = GsonBuilder()
         .disableHtmlEscaping().create()
 
     //data
-    private val data: MutableList<Chapter> = mutableListOf()
+    val mediatorLiveData = MediatorLiveData<Chapter>()
 
+    init {
+        mediatorLiveData.addSource(novel) {
+            mediatorLiveData.value = it.chapters[currentSelectChapterIndex.value!!]
+        }
+        mediatorLiveData.addSource(currentSelectChapterIndex) {
+            mediatorLiveData.value = novel.value!!.chapters[it]
+        }
+    }
 
     fun loadAllInfo(l: String) {
         indexLink = l
         viewModelScope.launch(Dispatchers.IO) {
+            currentSelectChapterIndex post 0
             novel.postValue(repository.getNovelData(l))
-            indexOrDetail post true
         }
 
     }
@@ -43,7 +52,6 @@ class NovelViewModel(
      * @param chapterNo start from 1
      */
     fun goToChapter(chapterNo: Int = 1) {
-        chapterDisplayModel post data[chapterNo - 1]
     }
 
     fun getToPrevChapter() {
