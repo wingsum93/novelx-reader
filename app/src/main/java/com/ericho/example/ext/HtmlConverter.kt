@@ -5,5 +5,5 @@ import com.ericho.example.ui.novel.chapter.Chapter
 import org.jsoup.nodes.Document
 
 typealias NovelHtmlFactoryOld = (Document) -> List<Chapter>
-typealias NovelHtmlFactory = (Document) -> NovelObject
+typealias NovelHtmlFactory = (url: String, html: Document) -> NovelObject
 

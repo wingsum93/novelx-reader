@@ -22,7 +22,8 @@ class NovelRemoteDataSource(
 
     init {
 
-        uukanFactory = { fullDocument ->
+        uukanFactory = { url, fullDocument ->
+            fullDocument.setBaseUri(url)
             val res = mutableListOf<Chapter>()
             val cssQuery_doc = "div.xiaoshuo_content"
             val cssQuery_title = "h1 a"
@@ -39,12 +40,11 @@ class NovelRemoteDataSource(
                 .split("没有更新？告诉管理員更新")[0]
 
             // for each chapters
-            val elements = doc.select(cssQuery_chapter)
+            val elements = fullDocument.select(cssQuery_chapter)
             elements.forEach {
-                val aElement = it.select("a").first()
+                val aElement = it
                 val chapterName = aElement.html()
                 val link = aElement.absUrl("href")
-
                 val chapter = Chapter(title = chapterName, link = link)
                 res += chapter
             }
@@ -53,7 +53,8 @@ class NovelRemoteDataSource(
                 title = novelTitle,
                 author = novelAuthor,
                 description = novelDescription,
-                lastUpdateTime = novelUpdateTime
+                lastUpdateTime = novelUpdateTime,
+                chapters = res
             )
         }
         factoryMap["www.uukanshu.com"] = uukanFactory
@@ -69,7 +70,10 @@ class NovelRemoteDataSource(
         return if (result.isSuccessful) {
             Timber.i("should have result")
             val string = result.body()?.string()
-            uukanFactory.invoke(helper.convertStringToDocument(html = string ?: ""))
+            uukanFactory.invoke(
+                urls,
+                helper.convertStringToDocument(html = string ?: "")
+            )
         } else {
             throw IOException("error")
         }

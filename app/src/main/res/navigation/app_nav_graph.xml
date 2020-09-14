@@ -13,8 +13,8 @@
             app:destination="@id/indexFragment">
             <argument
                 android:name="novelUrl"
-                android:defaultValue=""
-                app:argType="string" />
+                app:argType="string"
+                app:nullable="false" />
         </action>
     </fragment>
 
