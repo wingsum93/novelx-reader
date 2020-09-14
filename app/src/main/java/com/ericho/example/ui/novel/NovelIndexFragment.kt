@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ericho.example.Cc
 import com.ericho.example.R
 import com.ericho.example.databinding.FragmentNovelIndexBinding
+import com.ericho.example.ui.novel.chapter.Chapter
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
@@ -67,8 +69,16 @@ class NovelIndexFragment : Fragment() {
 
         binding?.recyclerView?.also {
             it.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-            it.adapter = NovelChapterAdapter().also { this.adapter = it }
             it.setHasFixedSize(true)
+            it.adapter = NovelChapterAdapter().also {
+                adapter
+                this.adapter = it
+                adapter?.onClickListener = object : NovelChapterAdapter.OnClickListener {
+                    override fun onClick(chapter: Chapter) {
+                        findNavController().navigate(R.id.action_indexFragment_to_chapterFragment)
+                    }
+                }
+            }
         }
 
         //

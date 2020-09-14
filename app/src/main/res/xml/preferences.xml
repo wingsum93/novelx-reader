@@ -9,5 +9,13 @@
         app:key="feedback"
         app:title="Send feedback"
         app:summary="Report technical issues or suggest new features" />
+    <Preference
+        app:key="donate"
+        app:title="Buy me a coffee"
+        app:summary="We need your support" />
+    <Preference
+        app:key="rate"
+        app:title="Rate App in Google Play"
+        app:summary="Rate 5 start to support us" />
 
 </PreferenceScreen>

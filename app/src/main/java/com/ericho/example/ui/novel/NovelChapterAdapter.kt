@@ -10,6 +10,9 @@ import com.ericho.example.ui.novel.chapter.Chapter
 
 class NovelChapterAdapter :
     ListAdapter<Chapter, NovelChapterAdapter.ViewHolder>(itemCallback) {
+    interface OnClickListener {
+        fun onClick(chapter: Chapter)
+    }
 
     object itemCallback : DiffUtil.ItemCallback<Chapter>() {
 
@@ -28,6 +31,8 @@ class NovelChapterAdapter :
         }
     }
 
+    var onClickListener: OnClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val inflater = LayoutInflater.from(parent.context)
@@ -38,12 +43,17 @@ class NovelChapterAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.setItem(item)
+        holder.setOnClickListener(onClickListener)
     }
 
     class ViewHolder(val binding: RowNovelChapterBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun setItem(item: Chapter) {
             binding.item = item
+        }
+
+        fun setOnClickListener(onClickListener: OnClickListener?) {
+            binding.handler = onClickListener
         }
     }
 }

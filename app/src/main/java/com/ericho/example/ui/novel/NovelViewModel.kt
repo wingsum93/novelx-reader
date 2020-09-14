@@ -24,14 +24,14 @@ class NovelViewModel(
         .disableHtmlEscaping().create()
 
     //data
-    val mediatorLiveData = MediatorLiveData<Chapter>()
+    val chapterLiveData = MediatorLiveData<Chapter>()
 
     init {
-        mediatorLiveData.addSource(novel) {
-            mediatorLiveData.value = it.chapters[currentSelectChapterIndex.value!!]
+        chapterLiveData.addSource(novel) {
+            chapterLiveData.value = it.chapters[currentSelectChapterIndex.value!!]
         }
-        mediatorLiveData.addSource(currentSelectChapterIndex) {
-            mediatorLiveData.value = novel.value!!.chapters[it]
+        chapterLiveData.addSource(currentSelectChapterIndex) {
+            chapterLiveData.value = novel.value!!.chapters[it]
         }
     }
 

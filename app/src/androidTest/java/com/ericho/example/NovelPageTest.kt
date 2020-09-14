@@ -8,7 +8,6 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.rule.ActivityTestRule
-import com.ericho.example.ui.novel.NovelActivity
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

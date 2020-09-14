@@ -18,24 +18,12 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class NovelChapterFragment : Fragment() {
 
     private val viewModel: NovelViewModel by sharedViewModel()
+
     private var binding: FragmentNovelPageBinding? = null
-
-    companion object {
-
-        fun newInstance(): NovelChapterFragment {
-            val b = Bundle()
-//            b.putString(Cc.Key.URL, l)
-            val fragment = NovelChapterFragment()
-            fragment.arguments = b
-            return fragment
-        }
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // get data
-        val b = requireArguments()
     }
 
     override fun onCreateView(
@@ -57,8 +45,9 @@ class NovelChapterFragment : Fragment() {
         binding?.vm = viewModel
         binding?.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.chapterDisplayModel.observe(this, Observer {
-            binding!!.webView.loadUrl(it.link)
+        viewModel.chapterLiveData.observe(viewLifecycleOwner, Observer {
+            //go to that chapter
+            binding?.webView?.loadUrl(it.link)
         })
     }
 }
