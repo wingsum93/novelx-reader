@@ -7,6 +7,7 @@ import com.ericho.example.ext.DocumentHelper
 import com.ericho.example.http.NovelApi
 import com.ericho.example.http.OkManager
 import com.ericho.example.http.RetrofitManager
+import com.ericho.example.other.UuContentHelper
 import com.ericho.example.ui.main.MainViewModel
 import com.ericho.example.ui.novel.NovelViewModel
 import okhttp3.OkHttpClient
@@ -22,8 +23,20 @@ val appModule = module {
 
 
     //data
-    factory<INovelRepository>(StringQualifier("remote")) { NovelRemoteDataSource(get(), get()) }
-    factory<INovelRepository>(StringQualifier("local")) { NovelRemoteDataSource(get(), get()) }
+    factory<INovelRepository>(StringQualifier("remote")) {
+        NovelRemoteDataSource(
+            get(),
+            get(),
+            get()
+        )
+    }
+    factory<INovelRepository>(StringQualifier("local")) {
+        NovelRemoteDataSource(
+            get(),
+            get(),
+            get()
+        )
+    }
 
     factory<INovelRepository> {
         NovelRepository(
@@ -33,6 +46,7 @@ val appModule = module {
     }
 
     factory { DocumentHelper() }
+    factory { UuContentHelper() }
     factory<NovelApi> { get<Retrofit>().create(NovelApi::class.java) }
 
     factory<OkHttpClient> { OkManager.getClient() }

@@ -13,4 +13,7 @@ interface INovelRepository {
      */
     @Throws(IOException::class)
     suspend fun getNovelData(urls: String): NovelObject
+
+//    @Throws(IOException::class)
+//    suspend fun getPageContent(urls: String)
 }
