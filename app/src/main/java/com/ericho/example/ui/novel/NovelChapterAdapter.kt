@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ericho.example.databinding.RowNovelChapterBinding
 import com.ericho.example.ui.novel.chapter.Chapter
+import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 
 class NovelChapterAdapter :
-    ListAdapter<Chapter, NovelChapterAdapter.ViewHolder>(itemCallback) {
+    ListAdapter<Chapter, NovelChapterAdapter.ViewHolder>(itemCallback),
+    RecyclerViewFastScroller.OnPopupTextUpdate {
     interface OnClickListener {
         fun onClick(chapter: Chapter)
     }
@@ -32,9 +34,7 @@ class NovelChapterAdapter :
     }
 
     var onClickListener: OnClickListener? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         val inflater = LayoutInflater.from(parent.context)
         val binding = RowNovelChapterBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
@@ -44,6 +44,10 @@ class NovelChapterAdapter :
         val item = getItem(position)
         holder.setItem(item)
         holder.setOnClickListener(onClickListener)
+    }
+
+    override fun onChange(position: Int): CharSequence {
+        return getItem(position)!!.title
     }
 
     class ViewHolder(val binding: RowNovelChapterBinding) : RecyclerView.ViewHolder(binding.root) {
