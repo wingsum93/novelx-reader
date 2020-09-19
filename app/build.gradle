@@ -84,13 +84,12 @@ dependencies {
     // Okhttp
     implementation 'com.squareup.okhttp3:okhttp:4.8.1'
     implementation 'com.google.code.gson:gson:2.8.6'
-
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
     // Stetho
     implementation "com.facebook.stetho:stetho:1.5.1"
     implementation "com.facebook.stetho:stetho-okhttp3:1.5.1"
-
-    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    implementation 'com.quiph.ui:recyclerviewfastscroller:0.2.3'
     implementation "com.jakewharton.timber:timber:4.7.1"
     // Unit test
     testImplementation 'junit:junit:4.13'
