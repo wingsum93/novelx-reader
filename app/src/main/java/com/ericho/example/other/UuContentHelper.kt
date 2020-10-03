@@ -6,6 +6,13 @@ import org.jsoup.nodes.Document
 import java.net.URL
 
 class UuContentHelper {
+    /**
+     * Convert to object for all supported website
+     *
+     * @param url the novel home page
+     * @param document the novel chapter page html
+     * @return handled data
+     */
     fun convert(url: String, document: Document): NovelObject {
         val temp = URL(url)
         return when (temp.host) {

@@ -7,6 +7,7 @@ import com.ericho.example.ext.DocumentHelper
 import com.ericho.example.http.NovelApi
 import com.ericho.example.http.OkManager
 import com.ericho.example.http.RetrofitManager
+import com.ericho.example.other.NovelSharePreferenceHelper
 import com.ericho.example.other.UuContentHelper
 import com.ericho.example.ui.main.MainViewModel
 import com.ericho.example.ui.novel.NovelViewModel
@@ -41,12 +42,14 @@ val appModule = module {
     factory<INovelRepository> {
         NovelRepository(
             remoteRepository = get(StringQualifier("remote")),
-            localRepository = get(StringQualifier("local"))
+            localRepository = get(StringQualifier("local")),
+            get()
         )
     }
 
     factory { DocumentHelper() }
     factory { UuContentHelper() }
+    factory { NovelSharePreferenceHelper(get()) }
     factory<NovelApi> { get<Retrofit>().create(NovelApi::class.java) }
 
     factory<OkHttpClient> { OkManager.getClient() }

@@ -9,5 +9,5 @@ data class NovelObject(
     var lastUpdateTime: String? = null,
     val chapters: MutableList<Chapter> = mutableListOf()
 ) {
-
+    var currentChapter: Chapter? = null
 }

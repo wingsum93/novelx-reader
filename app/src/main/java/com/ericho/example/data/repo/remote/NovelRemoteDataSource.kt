@@ -22,9 +22,8 @@ class NovelRemoteDataSource(
             val string = result.body()?.string()
             // from html string to processed data
             val document = helper.convertStringToDocument(html = string ?: "")
-
-            val novelObject = uuContentHelper.convert(urls, document)
-            return novelObject
+            val novelObject: NovelObject = uuContentHelper.convert(urls, document)
+            return novelObject.copy(chapters = novelObject.chapters.reversed().toMutableList())
         } else {
             throw IOException("error")
         }
