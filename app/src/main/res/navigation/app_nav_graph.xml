@@ -37,6 +37,9 @@
     <fragment
         android:id="@+id/chapterFragment"
         android:name="com.ericho.example.ui.novel.chapter.NovelChapterFragment">
+        <argument
+            android:name="chapter"
+            app:argType="com.ericho.example.ui.novel.chapter.Chapter" />
         <action
             android:id="@+id/action_pop_out_main"
             app:popUpTo="@id/app_nav_graph" />
