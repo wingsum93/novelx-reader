@@ -68,5 +68,5 @@ ext.versions = [
     truth               : '0.44',
     androidxTest        : '1.1.0',
     archTesting         : '2.0.1',
-    espresso            : '3.3.0'
+    espresso            : '3.4.0'
 ]

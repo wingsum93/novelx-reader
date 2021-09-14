@@ -26,7 +26,7 @@ class NovelChapterFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        chapter = args.chapter
+        chapter = args.chapter
     }
 
     override fun onCreateView(

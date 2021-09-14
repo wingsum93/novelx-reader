@@ -28,7 +28,12 @@
         tools:layout="@layout/fragment_novel_index">
         <action
             android:id="@+id/action_indexFragment_to_chapterFragment"
-            app:destination="@id/chapterFragment" />
+            app:destination="@id/chapterFragment">
+            <argument
+                android:name="chapter"
+                app:argType="com.ericho.example.ui.novel.chapter.Chapter"
+                app:nullable="false" />
+        </action>
         <action
             android:id="@+id/action_pop_out_main"
             app:popUpTo="@id/app_nav_graph" />

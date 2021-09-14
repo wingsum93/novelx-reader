@@ -75,7 +75,12 @@ class NovelIndexFragment : Fragment() {
                 this.adapter = it
                 adapter?.onClickListener = object : NovelChapterAdapter.OnClickListener {
                     override fun onClick(chapter: Chapter) {
-                        findNavController().navigate(R.id.action_indexFragment_to_chapterFragment)
+                        viewModel.chapterLiveData.postValue(chapter)
+                        findNavController().navigate(
+                            NovelIndexFragmentDirections.actionIndexFragmentToChapterFragment(
+                                chapter
+                            )
+                        )
                     }
                 }
             }
