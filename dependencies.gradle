@@ -1,8 +1,8 @@
 ext.versions = [
     // Properties
     minSdk              : 23,
-    compileSdk          : 29,
-    buildTools          : '29.0.3',
+    compileSdk          : 30,
+    buildTools          : '30.0.3',
     publishVersion      : '1.0.13',
     publishVersionCode  : 29,
 
@@ -14,7 +14,7 @@ ext.versions = [
     fabricPlugin        : '1.+',
 
     // Kotlin
-    kotlin              : '1.4.10',
+    kotlin              : '1.5.20',
     coroutines          : '1.2.1',
     koin                : '2.1.6',
     anko                : '0.10.8',
